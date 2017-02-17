@@ -5,7 +5,10 @@
     "Web": "1.0.0-*",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "xunit": "2.2.0-rc3-build3528",
-    "Microsoft.DotNet.InternalAbstractions": "1.0.0" 
+    "Microsoft.DotNet.InternalAbstractions": "1.0.0",
+    "Microsoft.AspNetCore.TestHost": "1.1.0",
+    "Shouldly": "2.8.2",
+    "Microsoft.EntityFrameworkCore.InMemory":  "1.1.0" 
   },
   "frameworks": {
     "netcoreapp1.1": {

@@ -6,9 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
+    using Data;
+
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly EmployeeDbContext _dbContext;
+
+        public HomeController(EmployeeDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        public  IActionResult Index()
         {
             return View();
         }
