@@ -26,17 +26,19 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
+            SetupDatabase(services);
+
             // Add framework services.
             services.AddMvc();
 
-            SetupDatabase(services);
+            
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            ILoggerFactory loggerFactory, EmployeeDbContext dbContext)
+            ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -51,7 +53,8 @@
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            EnsureDatabaseCreated(dbContext);
+
+            EnsureDatabaseCreated(app);
 
             app.UseStaticFiles();
 
@@ -67,13 +70,10 @@
         {
             var connection = Configuration.GetConnectionString("default");
 
-            services
-                .AddEntityFramework()
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(connection));
         }
 
-        protected virtual void EnsureDatabaseCreated(EmployeeDbContext dbContext)
+        protected virtual void EnsureDatabaseCreated(IApplicationBuilder app)
         {
             
         }

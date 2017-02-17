@@ -6,7 +6,6 @@ namespace IntegrationTest
     using System.Net.Http;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
-    using Web;
     using Xunit;
 
     //
@@ -22,6 +21,7 @@ namespace IntegrationTest
 
             // Arrange
             _client = fixture.Client;
+            
         }
 
         [Fact]
